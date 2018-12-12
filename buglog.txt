@@ -1,0 +1,160 @@
+The structure is up to you, but we would like to see the following:
+1) Date
+2) Description of the bug
+3) Person who found the bug
+4) Person who solved the bug
+5) How it was solved
+6) Hours spent on maintenance
+(this was posted on piazza, so we can follow this format)
+
+
+
+
+=================================================================================
+
+
+Oct-15-16
+Keyboard handler was taking 2 inputs as a time.
+Shanay
+Shanay
+We were not taking the data when a key was being released. We added that for the keyboard handler.
+4
+
+
+
+
+Oct-16-16
+Paging was causing other things to go all over the place, by causing random exceptions.
+Shanay
+Saurav
+We had to step through paging and see what was causing the problem, we were not flushing the TLB correctly.
+6
+
+
+Oct-18-16
+RTC was not being able to exit function properly, it kept page faulting
+Soumitri
+Soumitri
+We have to do IRET at end of interrupt handler instead of ret because a couple flags are put on stack when we go into interrupt handler
+2
+
+
+
+
+
+
+
+
+
+
+
+
+Oct-18-16
+Keyboard was spewing random characters out when we released the key
+Soumitri
+Soumitri/Shanay
+We need to check for the release scancode being hit so that we can only print  out when the release scancode is not given in
+1
+
+
+Oct-16-16
+Not being able to backspace correctly, it would backspace but not remove that character form the screen.
+Shanay
+Shanay
+Added a buffer to the terminal struct and kept a track of which index the user is at.
+3
+
+
+Oct-24-16
+Keyboard needs to have caps lock + shift go to lowercase. 
+Ian
+Shanay
+Add new array to keyboard handler for caps lock + shift option
+.5 
+
+
+Nov-10-16
+Segment not found exception.
+Shanay
+Shanay
+When initializing the idt we were not setting that index to present.
+8
+
+
+
+
+Nov-11-16
+Page faulting when trying to use system call linkage
+Vib
+Shanay
+We were not declaring the assembly function correctly.
+20
+
+
+
+
+Nov-13-16
+Not being able to halt system calls correctly.
+Vib
+Shanay
+TSS was not being set correctly in halt system call
+7
+
+
+
+
+Nov-17-16
+Page faulting when trying to return from read system call.
+Vib
+Soumitri
+We had a buffer on the stack which was overflowing and causing the memory of read to be corrupted.
+12
+
+
+Nov-19-16
+Halt needs to check if an exception flag was raised by user level code in order to return the proper value (256) and halt correctly.
+Ian
+Ian 
+Instead of using a global variable, we used a setter and getter function in exception handler that would be set when an exception is called, then halt calls this to see if an exception was ever raised.
+1
+
+
+Dec-3-16
+Fish was terminating abnormally
+Adam
+Saurav
+When more than one data block is being read in, we are not reading the data block and are re-reading the old one, so we had to find the respective datablock and read it.
+5
+
+
+Dec-3-16
+Pingpong speed was too fast
+Jesse
+Soumitri
+We needed to keep the loop in rtc_read only when interrupt handler was not called yet. We did it the opposite way.
+3
+
+
+Dec-2-16
+Page faulting when trying to open second terminal and execute a shell in it.
+Saurav
+Vib/Ashwin
+
+
+
+
+
+Dec-3-16
+Fish does not leave screen when switching terminals.
+Ian
+Yet to be solved
+Need to utilize vidmap and paging during terminal switch in order to store video memory into virtual memory
+Solving
+
+
+Dec-3-16
+Any executable that demands an argument will page fault if an argument is not passed in
+Ian
+Solving
+Solving
+Solving

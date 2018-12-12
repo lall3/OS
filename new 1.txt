@@ -1,0 +1,7 @@
+line 331 syscalls, make >8 instaed of >=8.
+add checking in read and close
+add three line for loop in execute
+comment out msg_size in exception handler
+(int8_t*) on lines 263 and 265 of files.c
+	uint8_t shell[6] = "shell"; in syscalls.c 
+	

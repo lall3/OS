@@ -1,0 +1,22 @@
+Makefile:40: Makefile.dep: No such file or directory
+make: Warning: File `system_calls.c' has modification time 32 s in the future
+gcc -MM -nostdinc -g boot.S system_call_linkage.S x86_desc.S exception_handler.c files.c i8259.c init_idt.c kernel.c keyboard.c lib.c paging.c rtc.c system_calls.c terminal_handler.c   > Makefile.dep
+make: Warning: File `Makefile.dep' has modification time 45 s in the future
+gcc  -nostdinc -g  -c -o boot.o boot.S
+gcc  -nostdinc -g  -c -o system_call_linkage.o system_call_linkage.S
+gcc  -nostdinc -g  -c -o x86_desc.o x86_desc.S
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o exception_handler.o exception_handler.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o files.o files.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o i8259.o i8259.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o init_idt.o init_idt.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel.o kernel.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o keyboard.o keyboard.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o lib.o lib.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o paging.o paging.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o rtc.o rtc.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o system_calls.o system_calls.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o terminal_handler.o terminal_handler.c
+rm -f bootimg
+gcc -nostdlib -static boot.o system_call_linkage.o x86_desc.o exception_handler.o files.o i8259.o init_idt.o kernel.o keyboard.o lib.o paging.o rtc.o system_calls.o terminal_handler.o -Ttext=0x400000 -o bootimg
+sudo ./debug.sh
+make: warning:  Clock skew detected.  Your build may be incomplete.
